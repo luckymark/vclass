@@ -1,0 +1,15 @@
+{
+  "name": "vclass",
+  "dependencies": {
+    "angular": "1.3.11",
+    "angular-ui-ace": "0.2.3",
+    "bg-splitter": "*",
+    "angular-ui-tree": "~2.2.0",
+    "bootstrap": "~3.3.2",
+    "lodash": "~3.1.0",
+    "angular-bootstrap": "~0.12.0"
+  },
+  "resolutions": {
+    "angular": "1.3.11"
+  }
+}

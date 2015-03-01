@@ -1,0 +1,30 @@
+/*for ui-bootstrap*/
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; }
+
+.pane-wrapper {
+    margin-top: 50px;
+    border: 1px solid #aaa;
+}
+
+.folder-closed {
+    padding: 1px 20px;
+    background: url("images/folder-closed.png") no-repeat;
+}
+
+.folder-opened {
+    padding: 1px 20px;
+    background: url("images/folder-opened.png") no-repeat;
+}
+
+.file {
+    padding: 1px 20px;
+    background: url("images/file.png") no-repeat;
+}
+
+html, body {
+    height: 98%;
+}
+
+.scrollable-content {
+    overflow: auto;
+}

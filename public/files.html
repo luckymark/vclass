@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>vclass文件浏览器</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css">
+    <link rel="stylesheet" href="bower_components/bg-splitter/css/style.css">
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="files.css">
+</head>
+<body ng-app="filesApp">
+<div ng-controller="FilesCtrl">
+    <br/>
+
+    <div class="container">
+        <div class="row">
+            <span>昵称:{{me.nickname}} 学号:{{me.studentId}}</span>
+        </div>
+        <hr/>
+
+        <div class="row">
+            <bg-splitter orientation="horizontal" class="pane-wrapper">
+                <bg-pane min-size="100" init-size="200">
+                    <div id="project_tree" class="col-sm-3" ui-tree data-drag-delay="1000">
+                        <ol ui-tree-nodes="" ng-model="files" id="tree-root">
+                            <li ng-repeat="node in files" ui-tree-node ng-include="'nodes_renderer.html'"></li>
+                        </ol>
+                    </div>
+                </bg-pane>
+
+                <bg-pane min-size="300">
+                    <h4>{{viewer.filename}}</h4>
+                    <div id="_ace" ui-ace="{onLoad: aceLoaded,mode:'c_cpp'}" readonly ng-model="viewer.content"></div>
+                </bg-pane>
+            </bg-splitter>
+        </div>
+
+    </div>
+
+</div>
+
+<script type="text/ng-template" id="nodes_renderer.html">
+    <div ui-tree-handle>
+        <span data-nodrag ng-click="view(node,this,$event)" ng-class="getFileState(node,this)">{{node.name}}</span>
+    </div>
+    <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">
+        <li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'">
+        </li>
+    </ol>
+</script>
+
+<script src="bower_components/angular/angular.min.js"></script>
+
+<script src="bower_components/angular-bootstrap/ui-bootstrap.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+
+<script src="bower_components/ace-builds/src-min-noconflict/ace.js"></script>
+<script src="bower_components/angular-ui-ace/ui-ace.js"></script>
+<script src="bower_components/ace-builds/src-min-noconflict/ext-language_tools.js"></script>
+<script src="bower_components/ace-builds/src-min-noconflict/mode-c_cpp.js"></script>
+
+<script src="bower_components/angular-ui-tree/dist/angular-ui-tree.js"></script>
+<script src="bg_splitter_init_size.js"></script>
+
+<script src="files.js"></script>
+
+</body>
+</html>
