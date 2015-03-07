@@ -13,19 +13,10 @@
         <div class="row">
             <form name="form" role="form" class="form-inline" novalidate>
                 <div class="form-group">
-                    <label class="control-label col-xs-3">学号:</label>
-
-                    <div class="col-xs-9">
-                        <input type="text" ng-change="changed()" ng-model="user.studentId" name="studentId" required
-                               class="form-control"/>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="control-label col-xs-3">昵称:</label>
 
                     <div class="col-xs-9">
-                        <input type="text" ng-change="changed()" ng-model="user.nickname" name="nickname" required
+                        <input type="text" ng-change="changed()" ng-model="user.nickname" ng-model-options="{debounce:1000}" name="nickname" required
                                class="form-control"/>
                     </div>
                 </div>
@@ -38,16 +29,13 @@
                 <div ng-repeat="node in nodes">
 
                     <div class="col-xs-4" ng-if="$index % 3 == 0">
-                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}} /
-                            {{node.studentId}}</a>
+                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}}</a>
                     </div>
                     <div class="offset-xs-4 col-xs-4" ng-if="$index % 3 == 1">
-                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}} /
-                            {{node.studentId}}</a>
+                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}}</a>
                     </div>
                     <div class="offset-xs-8 col-xs-4" ng-if="$index % 3 == 2">
-                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}} /
-                            {{node.studentId}}</a>
+                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}}</a>
                     </div>
                 </div>
             </div>

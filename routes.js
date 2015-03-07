@@ -33,8 +33,6 @@ module.exports = function (app) {
     app.post('/user', function*() {
         var user = this.request.body
         me.nickname = user.nickname
-        me.studentId = user.studentId
-        me.save()
 
         classroom.broadcast()
         classroom.saveNode(me)

@@ -32,3 +32,5 @@ node_modules
 public/bower_components
 
 projects
+
+node.exe

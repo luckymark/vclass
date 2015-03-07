@@ -12,7 +12,7 @@ var koa = require('koa')
     , serve = require('koa-static')
 
 app.use(bodyParser())
-app.use(serve('./public'))
+app.use(serve('./public',{maxage:24*60*60*1000}))
 app.use(router(app))
 
 require('./routes')(app)
