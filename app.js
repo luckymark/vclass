@@ -5,21 +5,23 @@
  */
 'use strict'
 
-var koa = require('koa')
-    , app = koa()
+var app = require('koa')()
     , router = require('koa-router')
     , bodyParser = require('koa-bodyparser')
     , serve = require('koa-static')
 
 app.use(bodyParser())
-app.use(serve('./public',{maxage:24*60*60*1000}))
+app.use(serve('./public', {maxage: 2 * 60 * 60 * 1000}))
 app.use(router(app))
 
 require('./routes')(app)
 
 app.listen(3001)
-
 console.log('vclass start on port 3001')
 
-require('./classroom').sayHello()
+
+
+
+
+
 

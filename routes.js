@@ -1,16 +1,11 @@
 'use strict'
 
 var classroom = require('./classroom')
-var me = require('./me')
-var readFolder = require('./folder')
-var fse = require('fs-extra')
+    , me = require('./me')
+    , readFolder = require('./folder')
+    , fse = require('fs-extra')
 
 module.exports = function (app) {
-    app.post('/hello', function*() {
-        classroom.saveNode(this.request.body)
-        this.body = me
-    })
-
     app.get('/file', function*() {
         var folder = []
         readFolder('', folder)
@@ -22,21 +17,17 @@ module.exports = function (app) {
         this.body = content
     })
 
-    app.get('/node', function*() {
-        this.body = classroom.nodes
+    app.get('/classroom', function*() {
+        this.body = classroom
     })
 
     app.get('/user', function*() {
-        this.body = me
+        this.body = me.name
     })
 
     app.post('/user', function*() {
-        var user = this.request.body
-        me.nickname = user.nickname
-
-        classroom.broadcast()
-        classroom.saveNode(me)
-        this.body = classroom.nodes
+        me.name = this.request.body.name
+        this.status = 200
     })
 }
 

@@ -12,24 +12,19 @@ angular.module('vclassApp')
                 $scope.user = user
             })
 
-        $http.get('/node')
+        $scope.changed = function () {
+            $http.post('/user', {name: $scope.user}, {headers: {'Content-Type': 'application/json'} })
+        }
+
+        $http.get('/classroom')
             .success(function (nodes) {
                 $scope.nodes = nodes
             })
 
-        $interval(function() {
-            $http.get('/node')
+        $interval(function () {
+            $http.get('/classroom')
                 .success(function (nodes) {
                     $scope.nodes = nodes
                 })
         }, 10000)
-
-        $scope.changed = function () {
-            console.log($scope.user)
-            $http.post('/user', $scope.user, {headers: {'Content-Type': 'application/json'} })
-                .success(function (nodes) {
-                    $scope.nodes = nodes
-                })
-        }
-
     }])

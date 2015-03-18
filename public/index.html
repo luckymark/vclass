@@ -16,7 +16,7 @@
                     <label class="control-label col-xs-3">昵称:</label>
 
                     <div class="col-xs-9">
-                        <input type="text" ng-change="changed()" ng-model="user.nickname" ng-model-options="{debounce:1000}" name="nickname" required
+                        <input type="text" ng-change="changed()" ng-model="user" ng-model-options="{debounce:1000}" name="user" required
                                class="form-control"/>
                     </div>
                 </div>
@@ -29,13 +29,13 @@
                 <div ng-repeat="node in nodes">
 
                     <div class="col-xs-4" ng-if="$index % 3 == 0">
-                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}}</a>
+                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.user}}</a>
                     </div>
                     <div class="offset-xs-4 col-xs-4" ng-if="$index % 3 == 1">
-                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}}</a>
+                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.user}}</a>
                     </div>
                     <div class="offset-xs-8 col-xs-4" ng-if="$index % 3 == 2">
-                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.nickname}}</a>
+                        <a ng-href="http://{{node.ip}}:3001/files.html" target="_blank">{{node.user}}</a>
                     </div>
                 </div>
             </div>

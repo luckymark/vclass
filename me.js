@@ -5,28 +5,32 @@
  */
 "use strict"
 
-var os = require('os')
+var dgram = require('dgram')
+    , server = dgram.createSocket('udp4')
+    , client = dgram.createSocket('udp4')
+    , classroom = require('./classroom')
 
-var fse = require('fs-extra')
-var ip = require('ip')
-
-var me = {}
-
-function getPrimaryIp() {
-    var nics = os.networkInterfaces()
-
-    for (var i in nics) {
-        var _ip = ip.address(i, 'IPv4')
-        console.log(i + " ip:" + _ip)
-        if (ip.mask(_ip, '255.255.255.0') == '192.168.128.0') {
-            return _ip
-        }
-    }
-    return null
+var me = {
+    name: "noname"
 }
 
-me.ip = getPrimaryIp()
-if(!me.ip) throw("无法获取本机ip！")
-console.log('my ip:' + me.ip)
+client.bind(function () {
+    client.setBroadcast(true)
+
+    setInterval(function () {
+        var message = new Buffer(me.name ? me.name : "noname")
+        client.send(message, 0, message.length, 3002, '255.255.255.255', function (err, bytes) {
+            if (err) {
+                console.log(err)
+            }
+        })
+    }, 10000)
+})
+
+server.on('message', function (message, remote) {
+    classroom[remote.address] = {ip: remote.address, user: message.toString('utf8')}
+})
+
+server.bind(3002)
 
 module.exports = me
